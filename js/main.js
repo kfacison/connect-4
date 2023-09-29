@@ -6,6 +6,10 @@
 		"1": "purple",
 		"-1": "orange"
 	};
+	// const PLAYER ={
+	// 	"1": "purple",
+	// 	"-1": "orange"
+	// }
 
 	/*----- state variables -----*/
 	let board; //aray of 7 column
@@ -13,7 +17,7 @@
 	let winner; // null= no winner; or 1 or -1 = winner; 'T' = tie game
 
 	/*----- cached elements  -----*/
-
+	const messageEl = document.querySelector("h1");
 
 	/*----- event listeners -----*/
 
@@ -31,13 +35,13 @@
 			
 			[0, 0, 0, 0, 0, 0],//col 2
 			
-			[0, 0, 0,-1, 0, 0],//col 3
+			[0, 0, 0,0, 0, 0],//col 3
 			
 			[0, 0, 0, 0, 0, 0],//col 4
 			
 			[0, 0, 0, 0, 0, 0],//col 5
 			
-			[0, 0, 1, 0, 0, 0] //col 6
+			[0, 0, 0, 0, 0, 0] //col 6
 		];
 		turn = 1;
 		winner = null;
@@ -58,13 +62,20 @@
 			const cellEl = document.getElementById(cellId);
 			cellEl.style.backgroundColor = COLORS[cellVal];
 			});
-			
 		});
 		
 	}
 
 	function renderMessage(){
-		
+		if(winner==="T"){
+			messageEl.innerText="It's a Tie."
+		}
+		else if(winner){
+			messageEl.innerHTML = ("<span style='text-transform:uppercase; font-weight: bold;'>"+COLORS[winner]+" wins!</span>");
+		}
+		else{
+			//messageEl.innerHTML = ("<span style='color:"+COLORS[winner]+">"+COLORS[winner]+" Turn")
+		}
 	}
 	//hide/show UI element(controls)
 	function renderControls(){
